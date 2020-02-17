@@ -3,7 +3,9 @@ class Api::V1::FactsController < ApplicationController
 
   # GET /facts
   def index
-    @facts = Fact.all
+    puts "In facts index..."
+    puts "user = #{@user}"
+    @facts = @user.facts.all
 
     render json: @facts
   end
@@ -46,7 +48,7 @@ class Api::V1::FactsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def find_fact
-      @fact = Fact.find(params[:id])
+      @fact = @user.facts.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
