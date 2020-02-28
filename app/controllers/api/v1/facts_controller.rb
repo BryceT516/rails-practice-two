@@ -3,8 +3,6 @@ class Api::V1::FactsController < ApplicationController
 
   # GET /facts
   def index
-    puts "In facts index..."
-    puts "user = #{@user}"
     @facts = @user.facts.all
 
     render json: @facts

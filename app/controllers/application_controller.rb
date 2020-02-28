@@ -12,33 +12,27 @@ class ApplicationController < ActionController::API
   
   def authenticate_token
     authenticate_with_http_token do |token, options|
-      puts "In authenticate_token..."
-
       idp_jwks_url = 'https://cognito-idp.us-west-2.amazonaws.com/us-west-2_q9IkW7VmH/.well-known/jwks.json'
       
-      jwk_set = JSON::JWK::Set.new(
+      @jwk_set ||= JSON::JWK::Set.new(
         JSON.parse(
           RestClient.get(idp_jwks_url)
         )
       )
       
-      id_token = JSON::JWT.decode token, jwk_set
+      id_token = JSON::JWT.decode token, @jwk_set
       
       token_data = JSON.parse(id_token.to_json)
       
       @user = User.find_or_create_by(email: token_data['email']) do |u|
         u.name = token_data['cognito:username']
       end
-      
-      puts "decode: #{id_token.to_json}"
-      puts "email = #{token_data["email"]}"
-      
+
       if @user
         return true
       else
         return false
       end
-      
     end
   end
   
