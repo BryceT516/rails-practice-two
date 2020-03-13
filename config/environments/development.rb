@@ -52,4 +52,7 @@ Rails.application.configure do
   
   # Allow connections to local server.
   config.hosts.clear
+  
+  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
+  
 end
