@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
-  # before_action :authenticate
-  
+  before_action :authenticate
   
   protected
   
@@ -27,23 +26,17 @@ class ApplicationController < ActionController::API
       @user = User.find_or_create_by(email: token_data['email']) do |u|
         u.name = token_data['cognito:username']
       end
-
-      if @user
-        return true
-      else
-        return false
-      end
+    end
+    
+    if @user
+      return true
+    else
+      return false
     end
   end
   
   def render_unauthorized(realm = "Application")
     self.headers["WWW-Authenticate"] = %(Token realm="#{realm}")
     render json: 'Bad credentials', status: :unauthorized
-  end
-
-  def authenticate_token
-    authenticate_with_http_token do |token, _|
-      Authentication::TokenAuthenticator.authenticate_token(token)
-    end
   end
 end

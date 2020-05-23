@@ -6,9 +6,9 @@ class Api::V1::UsersController < ApplicationController
     render json: @users
   end
   
-  # GET /user/:id
+  # GET /users/:id
   def show
-    @user = User.find(params[:id])
+    @user ||= User.find(params[:id])
     render json: @user
   end
   
