@@ -1,3 +1,4 @@
 class GameSerializer < ActiveModel::Serializer
-  attributes :id, :title, :user_id, :created_at
+  attributes :id, :title, :status, :created_at
+  belongs_to :user
 end

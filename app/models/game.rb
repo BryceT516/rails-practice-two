@@ -1,4 +1,7 @@
 class Game < ApplicationRecord
-  belongs_to :user
+    
+    enum status: [:pending, :active, :ended]
+    
+    belongs_to :user
   
 end

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :game do
     title { "Game Title" }
-    status { "new" }
+    status { "pending" }
     user
     created_at { Time.now }
   end

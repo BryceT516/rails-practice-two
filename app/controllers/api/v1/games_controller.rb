@@ -1,4 +1,5 @@
 class Api::V1::GamesController < ApplicationController
+  
   def index
     games = Game.all
     render json: games
@@ -6,7 +7,7 @@ class Api::V1::GamesController < ApplicationController
 
   def create
     new_game_params = game_params
-    game = @user.games.create(new_game_params)
+    game = @user.createGame(new_game_params)
     render json: game
   end
   
