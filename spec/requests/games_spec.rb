@@ -7,6 +7,12 @@ RSpec.describe 'Games API', type: :request do
     id: 0,
     title: "Game Title"
   } }
+  let(:players) { create_list(:user, 5) }
+  before do
+    players.each do |player|
+      games.first.join(player)
+    end
+  end
   before { stub_authentication }
   
   describe 'GET /v1/games' do
@@ -21,7 +27,7 @@ RSpec.describe 'Games API', type: :request do
       expect(response).to have_http_status(200)
     end
     
-    xit 'returns the correct data' do
+    it 'returns the correct data' do
       expect(json[0]).to eq(game_json_output)
     end
   end
