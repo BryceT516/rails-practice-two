@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
-  
+
   scope module: 'api' do
     namespace :v1 do
       resource :user, only: [:show]
       resources :users
-      resources :games
+      resources :games do
+        resource :game_turn, only: [:show]
+        resources :game_turns, only: [:index, :show]
+        
+      end
+      resources :participants
     end
   end
   

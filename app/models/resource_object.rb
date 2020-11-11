@@ -1,0 +1,5 @@
+class ResourceObject < ApplicationRecord
+  
+  
+  
+end

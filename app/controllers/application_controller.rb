@@ -3,12 +3,12 @@ class ApplicationController < ActionController::API
 
   before_action :authenticate
   
-  
-  
   def authenticate
     authenticate_token || render_unauthorized
   end
+  
   protected
+  
   def authenticate_token
     authenticate_with_http_token do |token, options|
       idp_jwks_url = 'https://cognito-idp.us-west-2.amazonaws.com/us-west-2_q9IkW7VmH/.well-known/jwks.json'
