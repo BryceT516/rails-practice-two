@@ -130,7 +130,9 @@ GEM
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.1009)
-    mimemagic (0.3.4)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
@@ -140,11 +142,11 @@ GEM
     net-http-persistent (2.9.4)
     net-http-pipeline (1.0.1)
     netrc (0.11.0)
-    nio4r (2.5.2)
+    nio4r (2.5.8)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     pg (1.1.4)
-    puma (4.3.3)
+    puma (4.3.12)
       nio4r (~> 2.0)
     pusher-client (0.6.2)
       json
@@ -257,7 +259,7 @@ DEPENDENCIES
   json-jwt
   listen (>= 3.0.5, < 3.2)
   pg (= 1.1.4)
-  puma (~> 4.1)
+  puma (~> 4.3)
   rack-cors
   rails (~> 6.0.2, >= 6.0.2.1)
   redis (~> 4.0)
